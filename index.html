@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Фоторобот — конструктор</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Фоторобот</h1>
+<label>Справа № <input type="text" id="cname" value="Справа 001" aria-label="Назва справи"></label>
+</header>
+<main>
+<section aria-labelledby="h-steps">
+<h2 id="h-steps">Опис очевидця</h2>
+<div class="steps" id="steps"></div>
+<p class="hint" id="hint"></p>
+<div class="grid" id="opts"></div>
+<div class="nav"><button class="btn" onclick="go(-1)">Назад</button><button class="btn pri" onclick="go(1)" id="next">Далі</button></div>
+</section>
+<section class="stage" aria-label="Полотно">
+<div id="canvas"></div>
+<p class="cap">Перетягуйте частини лиця мишею або пальцем. Лінії на фоні: зріст у см.</p>
+</section>
+<section aria-labelledby="h-fine">
+<h2 id="h-fine">Уточнення: <span id="selname"></span></h2>
+<div class="row"><span>Розмір</span><input type="range" id="rs" min="0.6" max="1.5" step="0.05" aria-label="Розмір"></div>
+<div class="row"><span>Ліворуч–праворуч</span><input type="range" id="rx" min="-40" max="40" step="1" aria-label="Зсув по горизонталі"></div>
+<div class="row"><span>Вище–нижче</span><input type="range" id="ry" min="-40" max="40" step="1" aria-label="Зсув по вертикалі"></div>
+<button class="btn" onclick="resetSel()">Скинути частину</button>
+<h2 style="margin-top:16px">Кольори</h2>
+<div class="row"><span>Шкіра</span><div class="sw" id="sw-skin"></div></div>
+<div class="row"><span>Волосся</span><div class="sw" id="sw-hair"></div></div>
+<div class="row"><span>Очі</span><div class="sw" id="sw-eye"></div></div>
+<div class="acts">
+<button class="btn" onclick="undo()">Скасувати</button>
+<button class="btn" onclick="save()">Зберегти</button>
+<button class="btn pri" style="grid-column:1/3" onclick="exportPng()">Експорт PNG</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<ul class="saved" id="saved"></ul>
+</section>
+</main>
+<div id="ov" role="dialog" aria-label="Експорт"><div><img id="oimg" alt="Готовий фоторобот"><p class="cap">Натисніть на зображення правою кнопкою (або утримуйте на телефоні) і виберіть «Зберегти зображення».</p><button class="btn pri" onclick="ov.classList.remove('on')">Закрити</button></div></div>
+<script src="app.js"></script>
+</body>
+</html>
